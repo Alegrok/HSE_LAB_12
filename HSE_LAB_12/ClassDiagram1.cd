@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HSE_LAB_12.Program">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAAAAAAAAABIAAAAAAAAAAAAAAABAEAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.PointUniList">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAQBAAEAgAAACAEAAAgAAAAAAQAAAMAAAA=</HashCode>
+      <FileName>PointUniList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.PointBiList">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQABAAAAAAQBAAEAAAAACAEAAAgAAAAAAQAABMAAAA=</HashCode>
+      <FileName>PointBiList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.PointTree">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIABAAAAAAAAAAEAAAAAAAAAAAoAAAKAAQBAAEAgAA=</HashCode>
+      <FileName>PointTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.Animals" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEBQAAAABCIAQEwAAAAAQAACAEAIAgAAQAABAAABA=</HashCode>
+      <FileName>Animals.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HSE_LAB_12.AnimalsComparer" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Animals.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HSE_LAB_12.Birds">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAYAAAkAAAABAAAAAEAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Birds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.Mammals">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAA4AAAgIAAAAAAAAAEAIAAAAAAAAAAABA=</HashCode>
+      <FileName>Mammals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSE_LAB_12.Artiodactyls">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIQAAACAAYAAAgAAAAAAAAAAEAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Artiodactyls.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="HSE_LAB_12.IExecutable">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgEAQAAAAAAIAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animals.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
