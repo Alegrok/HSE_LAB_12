@@ -25,8 +25,8 @@ namespace HSE_LAB_12
         {
             HoofSize = hoofSize;
         }
+        public new Animals BaseAnimals
 
-        public Animals BaseAnimals
         {
             get
             {

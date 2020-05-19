@@ -51,7 +51,25 @@ namespace HSE_LAB_12
 			return r;
 		}
 
-		static void ShowTree(Point<T> p, int l)
+		Point<T> MakeTreeClone(int size, Point<T> p, ref int i)
+		{
+			Point<T> r;
+			int nl, nr;
+			if (size == 0)
+			{
+				p = null;
+				return p;
+			}
+			nl = size / 2;
+			nr = size - nl - 1;
+			r = (Point<T>) new Point<T>(list[i]).Clone();
+			i++;
+			r.left = MakeTree(nl, r.left, ref i);
+			r.right = MakeTree(nr, r.left, ref i);
+			return r;
+		}
+
+		public static void ShowTree(Point<T> p, int l)
 		{
 			if (p != null)
 			{
@@ -92,7 +110,9 @@ namespace HSE_LAB_12
 
 		public object Clone()
 		{
-			return root;
+			int i = 0;
+			Point<T> newRoot = MakeTreeClone(list.Count, root, ref i);
+			return newRoot;
 		}
 
 		public object ShallowCopy()
@@ -115,9 +135,14 @@ namespace HSE_LAB_12
 			return GetEnumerator();
 		}
 
-		public IEnumerator GetEnumerator()
+		private IEnumerator GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+		public void Clear()
+		{
+			root = null;
 		}
 
 		public override int GetHashCode()
@@ -129,44 +154,6 @@ namespace HSE_LAB_12
 		{
 			Tree<T> tmp = (Tree<T>)obj;
 			return root.Equals(tmp.root);
-		}
-	}
-
-	public class Point<T> : ICloneable
-	{
-		public T data;
-		public Point<T> left;
-		public Point<T> right;
-
-		public Point()
-		{
-			data = default(T);
-			left = null;
-			right = null;
-		}
-
-		public Point(T d)
-		{
-			data = d;
-			left = null;
-			right = null;
-		}
-
-		public Point(T d, Point<T> l, Point<T> p)
-		{
-			data = d;
-			left = l;
-			right = p;
-		}
-
-		public object Clone()
-		{
-			return new Point<T>(data, left, right);
-		}
-
-		public override string ToString()
-		{
-			return data.ToString() + " ";
 		}
 	}
 }

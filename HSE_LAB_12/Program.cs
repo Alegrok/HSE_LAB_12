@@ -9,6 +9,7 @@ namespace HSE_LAB_12
             PointUniList uniListBeg = null;
             PointBiList biListBeg = null;
             PointTree pointTree = null;
+            Tree<Animals> tree = null;
 
             Console.WriteLine("Добро пожаловать в приложение по работе с коллекциями!");
 
@@ -43,7 +44,7 @@ namespace HSE_LAB_12
                         TreeCaseMenu(ref pointTree);
                         break;
                     case 4:
-                        PointTreeCaseMenu();
+                        PointTreeCaseMenu(ref tree);
                         break;
                 }
             }
@@ -263,7 +264,7 @@ namespace HSE_LAB_12
 
                 Console.WriteLine("\nМеню работы с идеально сбалансированным деревом:");
                 Console.WriteLine("1 - Формирование дерева");
-                Console.WriteLine("2 - Добавление элемента дерево");
+                Console.WriteLine("2 - Добавление элемента в дерево");
                 Console.WriteLine("3 - Печать дерева");
                 Console.WriteLine("4 - Поиск максимального элемента в дереве");
                 Console.WriteLine("5 - Удаление дерева из памяти");
@@ -285,7 +286,8 @@ namespace HSE_LAB_12
                         {
                             Console.WriteLine("\n1 - Формирование дерева");
                             Console.WriteLine("Для формирования дерева создается корень:");
-                            pointTree = new PointTree(new Animals().CreateObjectAnimalsRandom());
+                            Animals a = new Animals();
+                            pointTree = new PointTree(a.CreateObjectAnimalsRandom());
                             Console.WriteLine("Формирование дерева завершено");
                         }
                         break;
@@ -313,16 +315,16 @@ namespace HSE_LAB_12
                         break;
                     case 4:
                         {
-                            Console.WriteLine("\n4 - Нахождение максимального  в дереве");
+                            Console.WriteLine("\n4 - Поиск максимального элемента в дереве");
                             Animals a = pointTree.FindMax();
                             if (a.Weight == 1)
                             {
                                 Console.WriteLine("Ошибка! В дереве нет объектов, следовательно нет максимального элемента");
-                                Console.WriteLine("Нахождение максимального объекта в дереве не завершено");
+                                Console.WriteLine("Поиск максимального элемента в дереве не завершено");
                                 break;
                             }
                             Console.WriteLine("Максимальный объект в дереве равен " + a.Weight);
-                            Console.WriteLine("Нахождение максимального объекта в дереве завершено");
+                            Console.WriteLine("Поиск максимального элемента в дереве завершено");
                         }
                         break;
                     case 5:
@@ -357,20 +359,22 @@ namespace HSE_LAB_12
             }
         }
 
-        private static void PointTreeCaseMenu()
+        private static void PointTreeCaseMenu(ref Tree<Animals> tree)
         {
             while (true)
             {
-                int pointsCaseMenu = 7;
+                int pointsCaseMenu = 9;
 
                 Console.WriteLine("\nМеню работы с обобщенной коллекцией:");
                 Console.WriteLine("1 - Формирование дерева");
-                Console.WriteLine("2 - Добавление элемента дерево");
-                Console.WriteLine("3 - Печать дерева");
-                Console.WriteLine("4 - Поиск максимального элемента в дереве");
-                Console.WriteLine("5 - Удаление дерева из памяти");
-                Console.WriteLine("6 - Создание дерева поиска");
-                Console.WriteLine("7 - Очистка истории");
+                Console.WriteLine("2 - Добавление элемента в дерево");
+                Console.WriteLine("3 - Добавление элементов в дерево");
+                Console.WriteLine("4 - Печать дерева");
+                Console.WriteLine("5 - Поиск элемента по значению в дереве");
+                Console.WriteLine("6 - Поверхностное клонирование дерева");
+                Console.WriteLine("7 - Идеальное клонирование дерева");
+                Console.WriteLine("8 - Удаление дерева из памяти");
+                Console.WriteLine("9 - Очистка истории");
                 Console.WriteLine("0 - Выход из меню");
 
                 int choiceCaseMenu = InputInt(0, pointsCaseMenu);
@@ -386,70 +390,102 @@ namespace HSE_LAB_12
                     case 1:
                         {
                             Console.WriteLine("\n1 - Формирование дерева");
-                            Console.WriteLine("Для формирования дерева создается корень:");
-                            pointTree = new PointTree(new Animals().CreateObjectAnimalsRandom());
+                            Console.WriteLine("Для формирования дерева введите количество элементов в предполагаемом дереве:");
+                            Animals[] animals = new Animals[InputInt(1, 100)];
+                            for (int i = 0; i < animals.Length; i++)
+                            {
+                                animals[i] = new Animals();
+                                animals[i] = animals[i].CreateObjectAnimalsRandom();
+                            }
+                            tree = new Tree<Animals>(animals);
                             Console.WriteLine("Формирование дерева завершено");
                         }
                         break;
                     case 2:
                         {
                             Console.WriteLine("\n2 - Добавление элемента в дерево");
-                            pointTree.Add(new Animals().CreateObjectAnimalsRandom());
+                            if (tree == null)
+                            {
+                                Console.WriteLine("Ошибка! Дерево не создано");
+                                Console.WriteLine("Добавление элемента в дерево не завершено");
+                                break;
+                            }
+                            tree.Add(new Animals().CreateObjectAnimalsRandom());
                             Console.WriteLine("Добавление элемента в дерево завершено");
                         }
                         break;
                     case 3:
                         {
-                            Console.WriteLine("\n3 - Печать дерева");
-                            if (pointTree == null)
+                            Console.WriteLine("\n3 - Добавление элементов в дерево");
+                            if (tree == null)
+                            {
+                                Console.WriteLine("Ошибка! Дерево не создано");
+                                Console.WriteLine("Добавление элементов в дерево не завершено");
+                                break;
+                            }
+                            Console.WriteLine("Введите количество элементов для добавления в дерево: ");
+                            Animals[] animals = new Animals[InputInt(1, 10)];
+                            for (int i = 0; i < animals.Length; i++)
+                            {
+                                animals[i] = new Animals();
+                                animals[i] = animals[i].CreateObjectAnimalsRandom();
+                            }
+                            tree.Add(animals);
+                            Console.WriteLine("Добавление элементов в дерево завершено");
+                        }
+                        break;
+                    case 4:
+                        {
+                            Console.WriteLine("\n4 - Печать дерева");
+                            if (tree == null)
                             {
                                 Console.WriteLine("Дерево пустое");
                             }
                             else
                             {
                                 Console.WriteLine("Дерево:");
-                                pointTree.ShowTree(pointTree.Root, 0);
+                                Tree<Animals>.ShowTree(tree.root, 0);
+                                Console.WriteLine("foreach:");
+                                foreach (var item in tree)
+                                {
+                                    Console.WriteLine(item.ToString());
+                                }
                             }
-                            Console.WriteLine("\nПечать дерева завершено");
-                        }
-                        break;
-                    case 4:
-                        {
-                            Console.WriteLine("\n4 - Нахождение максимального  в дереве");
-                            Animals a = pointTree.FindMax();
-                            if (a.Weight == 1)
-                            {
-                                Console.WriteLine("Ошибка! В дереве нет объектов, следовательно нет максимального элемента");
-                                Console.WriteLine("Нахождение максимального объекта в дереве не завершено");
-                                break;
-                            }
-                            Console.WriteLine("Максимальный объект в дереве равен " + a.Weight);
-                            Console.WriteLine("Нахождение максимального объекта в дереве завершено");
+                            Console.WriteLine("Печать дерева завершена");
                         }
                         break;
                     case 5:
                         {
-                            Console.WriteLine("\n5 - Удаление дерева из памяти");
-                            pointTree = new PointTree();
-                            Console.WriteLine("Удаление дерева из памяти завершено");
+                            Console.WriteLine("\n5 - Поиск элемента по значению в дереве");
+                            Console.WriteLine("Введите имя, вид и вес элемента для его поиска в дереве");
+                            Animals animal = new Animals(InputString(), InputString(), InputInt(1, 10000));
+                            if (!tree.Find(animal)) Console.WriteLine("В дереве нет искомого элемента");
+                            else Console.WriteLine("В дереве найден искомый элемент");
+                            Console.WriteLine("Поиск элемента по значению в дереве завершен");
                         }
                         break;
                     case 6:
                         {
-                            Console.WriteLine("\n6 - Создание дерева поиска");
-                            if (pointTree.Root == null)
-                            {
-                                Console.WriteLine("Ошибка! Дерево не имеет начала");
-                                Console.WriteLine("Создание дерева поиска не завершено");
-                                break;
-                            }
-                            pointTree.CreateFindTree();
-                            Console.WriteLine("Дерево: ");
-                            pointTree.ShowTree(pointTree.Root, 0);
-                            Console.WriteLine("Создание дерева завершено");
+                            Console.WriteLine("\n6 - Поверхностное клонирование дерева");
+                            Point<Animals> shallowCopyTree = (Point<Animals>)tree.ShallowCopy();
+                            Console.WriteLine("Поверхностное клонирование дерева завершено");
                         }
                         break;
                     case 7:
+                        {
+                            Console.WriteLine("\n7 - Идеальное клонирование дерева");
+                            Point<Animals> copyTree = (Point<Animals>)tree.Clone();
+                            Console.WriteLine("Идеальное клонирование дерева завершено");
+                        }
+                        break;
+                    case 8:
+                        {
+                            Console.WriteLine("\n8 - Удаление дерева из памяти");
+                            tree.Clear();
+                            Console.WriteLine("Удаление дерева из памяти завершено");
+                        }
+                        break;
+                    case 9:
                         {
                             Console.Clear();
                             Console.WriteLine("История была очищена");
@@ -459,17 +495,18 @@ namespace HSE_LAB_12
             }
         }
 
-        private static int InputInt(int min)
+        private static string InputString()
         {
-            int number;
+            string input;
             bool inputCheck;
             do
             {
                 Console.Write("Ввод: ");
-                inputCheck = int.TryParse(Console.ReadLine(), out number);
-                if (!inputCheck) Console.WriteLine("Ошибка ввода! Введите целое число в пределах от {0} до бесконечности", min);
+                input = Console.ReadLine();
+                inputCheck = input.Trim().Length > 0;
+                if (!inputCheck) Console.WriteLine("Ошибка ввода! Введите не пустые данные");
             } while (!inputCheck);
-            return number;
+            return input;
         }
 
         private static int InputInt(int min, int max)
